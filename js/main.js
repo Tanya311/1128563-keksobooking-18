@@ -48,19 +48,15 @@ var getRandom = function (min, max) {
   return Math.floor(Math.random() * max) + min;
 };
 
-var getRandomIndexArray = function (maxValue) {
-  return maxValue[Math.floor(Math.random() * (maxValue.length))];
+var getRandomIndexArray = function (arr) {
+  return arr[Math.floor(Math.random() * (arr.length))];
 };
 
 var getGenerateRandomArray = function (arr) {
   var array = [];
   var randomLength = getRandom(1, arr.length);
-  array.push(getRandomIndexArray(arr));
   for (var i = 0; i < randomLength; i++) {
-    var item = arr[i];
-    if (array.indexOf(item) === -1) {
-      array.push(item);
-    }
+    array.push(arr[i])
   }
   return array;
 };
@@ -90,8 +86,9 @@ var getOffer = function () {
 var getLocation = function (parentElement, childElement, yMin, yMax) {
   var parentPositionInfo = parentElement.getBoundingClientRect();
   var childPositionInfo = childElement.getBoundingClientRect();
-  var positionX = getRandom(0, parentPositionInfo.width) - childPositionInfo.width / 2;
-  var positionY = getRandom(yMin, yMax) - childPositionInfo.height;
+  var positionX = getRandom(62, parentPositionInfo.width -62*2);
+  console.log(parentPositionInfo.width)
+  var positionY = getRandom(yMin, yMax) - 62*2;
   var location = {
     x: positionX,
     y: positionY
